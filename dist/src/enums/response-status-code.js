@@ -1,0 +1,35 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EnumStatusCode = void 0;
+var EnumStatusCode;
+(function (EnumStatusCode) {
+    EnumStatusCode["RECOVERED_SUCCESSFULLY"] = "RECOVERED_SUCCESSFULLY";
+    EnumStatusCode["LOGGED_IN_SUCCESSFULLY"] = "LOGGED_IN_SUCCESSFULLY";
+    EnumStatusCode["UPDATED_SUCCESSFULLY"] = "UPDATED_SUCCESSFULLY";
+    EnumStatusCode["DELETED_SUCCESSFULLY"] = "DELETED_SUCCESSFULLY";
+    EnumStatusCode["CREATED_SUCCESSFULLY"] = "CREATED_SUCCESSFULLY";
+    EnumStatusCode["INTERNAL_SERVER_ERROR"] = "INTERNAL_SERVER_ERROR";
+    EnumStatusCode["NOT_FOUND"] = "NOT_FOUND";
+    EnumStatusCode["UNABLE_TO_CREATE_ACCOUNT"] = "UNABLE_TO_CREATE_ACCOUNT";
+    EnumStatusCode["EXISTS_ALREADY"] = "EXISTS_ALREADY";
+    EnumStatusCode["INVALID_CREDENTIALS"] = "INVALID_CREDENTIALS";
+    EnumStatusCode["CLIENT_CREATED_SUCCESSFULLY"] = "CLIENT_CREATED_SUCCESSFULLY";
+    EnumStatusCode["NO_TOKEN_PROVIDED"] = "NO_TOKEN_PROVIDED";
+    EnumStatusCode["TOKEN_EXPIRED"] = "TOKEN_EXPIRED";
+    EnumStatusCode["INVALID_TOKEN"] = "INVALID_TOKEN";
+    EnumStatusCode["NOT_ALLOWED"] = "NOT_ALLOWED";
+    EnumStatusCode["LOGGED_OUT_SUCCESSFULLY"] = "LOGGED_OUT_SUCCESSFULLY";
+    EnumStatusCode["LOGIN_METHOD_NOT_ALLOWED"] = "LOGIN_METHOD_NOT_ALLOWED";
+    EnumStatusCode["USER_ALREADY_EXISTS"] = "USER_ALREADY_EXISTS";
+    EnumStatusCode["MAX_IMAGES_REACHED"] = "MAX_IMAGES_REACHED";
+    EnumStatusCode["ONLY_IMAGE_FILES_ALLOWED"] = "ONLY_IMAGE_FILES_ALLOWED";
+    EnumStatusCode["CANNOT_DELETE_OWNER"] = "CANNOT_DELETE_OWNER";
+    EnumStatusCode["CANNOT_DELETE_SELF"] = "CANNOT_DELETE_SELF";
+    EnumStatusCode["CANNOT_CREATE_OWNER"] = "CANNOT_CREATE_OWNER";
+    EnumStatusCode["LINKED_USER_NOT_FOUND"] = "LINKED_USER_NOT_FOUND";
+    EnumStatusCode["OLD_PASSWORD_DOES_NOT_MATCH"] = "OLD_PASSWORD_DOES_NOT_MATCH";
+    EnumStatusCode["PASSWORD_DID_NOT_CHANGE"] = "PASSWORD_DID_NOT_CHANGE";
+    EnumStatusCode["CATEGORY_DOES_NOT_EXIST"] = "CATEGORY_DOES_NOT_EXIST";
+    EnumStatusCode["INVALID_REQUEST"] = "INVALID_REQUEST";
+})(EnumStatusCode || (exports.EnumStatusCode = EnumStatusCode = {}));
+//# sourceMappingURL=response-status-code.js.map
