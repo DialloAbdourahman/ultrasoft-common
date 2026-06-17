@@ -1,0 +1,38 @@
+{
+  "name": "ultrasoft-common",
+  "version": "1.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build",
+    "release:patch": "npm version patch -m 'Release %s' && npm run build && npm publish --access public",
+    "release:minor": "npm version minor -m 'Release %s' && npm run build && npm publish --access public",
+    "release:major": "npm version major -m 'Release %s' && npm run build && npm publish --access public",
+    "small-fix": "git add . && git commit -m 'small fix' && git push && npm run release:patch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^11.1.27",
+    "@nestjs/core": "^11.1.27",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/mongoose": "^11.0.4",
+    "@nestjs/platform-express": "^11.1.27",
+    "mongoose": "^9.7.1",
+    "nest-winston": "^1.10.2",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
+  }
+}
