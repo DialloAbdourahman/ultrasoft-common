@@ -4,11 +4,12 @@ import {
   ArgumentsHost,
   HttpException,
   Logger,
-} from '@nestjs/common';
-import { Request, Response } from 'express';
-import { OrchestrationException } from '../exceptions/orchestration.exception';
-import { EnumStatusResponse } from '../enums/status-response';
-import { EnumStatusCode } from '../enums/response-status-code';
+} from "@nestjs/common";
+import { Request, Response } from "express";
+import { OrchestrationException } from "../exceptions/orchestration.exception";
+import { EnumStatusResponse } from "../enums/status-response";
+import { EnumStatusCode } from "../enums/response-status-code";
+import { extractHttpExceptionDetails } from "../utils/http-exception.utils";
 
 @Catch()
 export class OrchestrationExceptionFilter implements ExceptionFilter {
@@ -19,9 +20,7 @@ export class OrchestrationExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    console.log(exception);
-
-    // 🎯 Case 1 — Our custom OrchestrationException
+    // Our custom OrchestrationException
     if (exception instanceof OrchestrationException) {
       this.logger.warn(
         `[OrchestrationException] ${request.method} ${request.url} — ${exception.message}`,
@@ -34,22 +33,26 @@ export class OrchestrationExceptionFilter implements ExceptionFilter {
       });
     }
 
-    // 🎯 Case 2 — NestJS built-in HttpException (NotFoundException etc.)
+    // NestJS built-in HttpException (validation, NotFoundException, etc.)
     if (exception instanceof HttpException) {
-      const status = exception.getStatus();
+      const { status, message, validationErrors } =
+        extractHttpExceptionDetails(exception);
+
       this.logger.warn(
-        `[HttpException] ${request.method} ${request.url} — ${exception.message}`,
+        `[HttpException] ${request.method} ${request.url} — ${message}`,
       );
 
       return response.status(status).json({
         code: EnumStatusResponse.FAILURE,
-        statusCode: EnumStatusCode.INTERNAL_SERVER_ERROR,
-        message: exception.message,
-        data: null,
+        statusCode: validationErrors
+          ? EnumStatusCode.INVALID_REQUEST
+          : EnumStatusCode.INTERNAL_SERVER_ERROR,
+        message,
+        data: validationErrors,
       });
     }
 
-    // 🎯 Case 3 — Unknown/unhandled errors — most important to log
+    // Unknown/unhandled errors — most important to log
     this.logger.error(
       `[UnhandledException] ${request.method} ${request.url}`,
       exception instanceof Error ? exception.stack : String(exception),
@@ -57,7 +60,7 @@ export class OrchestrationExceptionFilter implements ExceptionFilter {
     return response.status(500).json({
       code: EnumStatusResponse.FAILURE,
       statusCode: EnumStatusCode.INTERNAL_SERVER_ERROR,
-      message: 'Internal server error',
+      message: "Internal server error",
       data: null,
     });
   }
