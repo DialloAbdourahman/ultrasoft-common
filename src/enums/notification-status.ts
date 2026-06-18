@@ -1,4 +1,4 @@
-export enum EnumStatus {
+export enum EnumNotificationStatus {
   PENDING = "PENDING",
   PROCESSING = "PROCESSING",
   SENT = "SENT",
