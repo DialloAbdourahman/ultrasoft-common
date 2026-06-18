@@ -9,3 +9,4 @@ export * from "./interfaces";
 export * from "./logger";
 export * from "./schemas";
 export * from "./utils";
+export * from "./pipes";
