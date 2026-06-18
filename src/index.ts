@@ -10,3 +10,4 @@ export * from "./logger";
 export * from "./schemas";
 export * from "./utils";
 export * from "./pipes";
+export * from "./rabbitmq";
