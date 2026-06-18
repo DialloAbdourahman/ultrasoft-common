@@ -1,0 +1,6 @@
+export enum EnumStatus {
+  PENDING = "PENDING",
+  PROCESSING = "PROCESSING",
+  SENT = "SENT",
+  FAILED = "FAILED",
+}
